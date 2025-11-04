@@ -1,312 +1,204 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dhani Finance - Your Financial Freedom Partner</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dhani — Loans & Services (Clone)</title>
+  <link rel="stylesheet" href="style.css" />
+  <meta name="description" content="Dhani Loans & Services — responsive clone (HTML, CSS, JS)" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar" id="navbar">
-        <div class="container">
-            <div class="nav-wrapper">
-                <div class="logo">
-                    <div class="logo-icon">D</div>
-                    <div class="logo-text">Dhani Finance</div>
-                </div>
-                <button class="menu-toggle" id="menuToggle">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-                <ul class="nav-menu" id="navMenu">
-                    <li><a href="index.html" class="active">Home</a></li>
-                    <li><a href="#features">Features</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#testimonials">Testimonials</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                    <li><a href="#" class="btn btn-primary">Get Started</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
 
-    <!-- Hero Section -->
-<section id="dhani-hero" class="hero-section">
-  <div class="hero-container">
-    <div class="hero-left">
-      <h1 class="hero-heading">
-        Your Path to <span>Financial Freedom</span> Starts Here
-      </h1>
-      <p class="hero-description">
-        Dhani Finance provides innovative financial solutions to help you grow your wealth,
-        secure your future, and achieve your financial goals with confidence and ease.
-      </p>
-      <div class="hero-buttons">
-        <a href="#contact" class="hero-btn primary-btn">Get Started</a>
-        <a href="#services" class="hero-btn secondary-btn">Learn More</a>
+  <!-- ====== NAVBAR ====== -->
+  <header class="site-header">
+    <div class="container nav-container">
+      <a class="brand" href="#">
+        <!-- Real Dhani logo URL (may change) - fallback below -->
+        <img id="site-logo" src="image/Dhani logo.jpg" alt="Dhani logo" onerror="this.onerror=null; this.src='assets/logo-placeholder.png'">
+      </a>
+
+      <nav class="main-nav" id="main-nav">
+        <ul>
+          <li><a href="#loans">Loans</a></li>
+          <li><a href="#card">Dhani Card</a></li>
+          <li><a href="#health">Health</a></li>
+          <li><a href="#offers">Offers</a></li>
+          <li><a href="#support">Support</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <a class="btn btn-ghost" href="#download">Download App</a>
+        <button id="hamburger" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ====== HERO ====== -->
+  <section class="hero" id="home" aria-label="Hero">
+    <div class="hero-overlay"></div>
+    <div class="container hero-inner">
+      <div class="hero-left">
+        <h1 class="hero-title">Dhani — Loans & Services</h1>
+        <p class="hero-sub">Instant loans, personal finance, and health services — all in one app. Easy EMI, zero hassle.</p>
+
+        <div class="hero-ctas">
+          <a class="btn btn-primary" href="#apply">Apply Now</a>
+          <a class="btn btn-outline" href="#learn">Learn More</a>
+        </div>
+
+        <ul class="hero-features">
+          <li><strong>Quick Approval</strong> — Minimal docs</li>
+          <li><strong>Flexible EMI</strong> — Pay your way</li>
+          <li><strong>Secure</strong> — Bank-grade security</li>
+        </ul>
       </div>
 
-      <div class="hero-stats">
-        <div class="hero-stat-item">
-          <h3>10M+</h3>
-          <p>Happy Customers</p>
+      <div class="hero-right">
+        <!-- hero image - using a live-ish image; replace if you prefer official Dhani banner -->
+        <img class="hero-phone" src="image/Dhani_Home_Page_Banner.svg" alt="Dhani App preview" onerror="this.onerror=null; this.src='assets/hero-placeholder.jpg'">
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== OFFERS / LOAN CARDS ====== -->
+  <section class="section offers" id="loans">
+    <div class="container">
+      <div class="section-head">
+        <h2>Popular Services</h2>
+        <p>Choose what fits you — instant personal loan, credit line, health services & more.</p>
+      </div>
+
+      <div class="cards-grid">
+        <article class="card">
+          <div class="card-icon">💸</div>
+          <h3>Personal Loan</h3>
+          <p>Loan up to ₹5,00,000. Flexible EMIs & quick disbursal.</p>
+          <a class="card-cta" href="#apply">Apply in minutes →</a>
+        </article>
+
+        <article class="card">
+          <div class="card-icon">💳</div>
+          <h3>Dhani Card</h3>
+          <p>Get a credit line + exclusive offers on payments and shopping.</p>
+          <a class="card-cta" href="#card">Get Card →</a>
+        </article>
+
+        <article class="card">
+          <div class="card-icon">🩺</div>
+          <h3>Dhani Health</h3>
+          <p>Consult doctors, book tests & manage health expenses easily.</p>
+          <a class="card-cta" href="#health">Explore Health →</a>
+        </article>
+
+        <article class="card">
+          <div class="card-icon">🎁</div>
+          <h3>Offers & Cashback</h3>
+          <p>Exclusive discounts & partner deals — save while you spend.</p>
+          <a class="card-cta" href="#offers">View Offers →</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== KEY BENEFITS ====== -->
+  <section class="section benefits">
+    <div class="container grid-two">
+      <div class="benefits-left">
+        <h2>Why choose Dhani?</h2>
+        <ul class="benefit-list">
+          <li><strong>Instant approvals</strong> — Minimal paperwork</li>
+          <li><strong>Transparent fees</strong> — No hidden charges</li>
+          <li><strong>24/7 support</strong> — We're here when you need</li>
+        </ul>
+
+        <div class="download-cta" id="download">
+          <p>Download the Dhani app</p>
+          <div class="store-buttons">
+            <a class="store-btn" href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Google Play" onerror="this.onerror=null; this.src='assets/google-play.png'"></a>
+            <a class="store-btn" href="#"><img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="App Store" onerror="this.onerror=null; this.src='assets/app-store.png'"></a>
+          </div>
         </div>
-        <div class="hero-stat-item">
-          <h3>₹5000Cr+</h3>
-          <p>Loans Disbursed</p>
+      </div>
+
+      <div class="benefits-right">
+        <img class="app-screenshot" src="image/App screenshot.webp" alt="App screenshot" onerror="this.onerror=null; this.src='assets/appshot-placeholder.png'">
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== TESTIMONIALS (slider) ====== -->
+  <section class="section testimonials">
+    <div class="container">
+      <div class="section-head">
+        <h2>What customers say</h2>
+      </div>
+
+      <div class="testimonial-wrap" id="testimonial-wrap">
+        <button class="t-nav t-prev" id="t-prev" aria-label="Previous testimonial">‹</button>
+        <div class="testimonial-slider" id="testimonial-slider">
+          <blockquote class="testimonial">
+            <p>"Got an instant loan with minimum fuss. App is smooth and customer support helped every step."</p>
+            <cite>— Rahul K.</cite>
+          </blockquote>
+
+          <blockquote class="testimonial">
+            <p>"Saved a lot using cashback offers on the Dhani Card. Payments are seamless."</p>
+            <cite>— Priya M.</cite>
+          </blockquote>
+
+          <blockquote class="testimonial">
+            <p>"Dhani Health connected me to a specialist quickly — very helpful during an emergency."</p>
+            <cite>— Sunil R.</cite>
+          </blockquote>
         </div>
-        <div class="hero-stat-item">
-          <h3>98%</h3>
-          <p>Customer Satisfaction</p>
+        <button class="t-nav t-next" id="t-next" aria-label="Next testimonial">›</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== FOOTER ====== -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-col">
+        <img id="footer-logo" src="https://www.dhani.com/assets/images/logo.svg" alt="Dhani" onerror="this.onerror=null; this.src='assets/logo-placeholder.png'">
+        <p>© <span id="year"></span> Dhani — Clone for demo. This is not the official site.</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Products</h4>
+        <ul>
+          <li><a href="#loans">Personal Loan</a></li>
+          <li><a href="#card">Dhani Card</a></li>
+          <li><a href="#health">Dhani Health</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Support</h4>
+        <ul>
+          <li><a href="#support">Help Center</a></li>
+          <li><a href="#support">Contact Us</a></li>
+          <li><a href="#support">Privacy</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Follow</h4>
+        <div class="socials">
+          <a href="#" aria-label="Facebook"></a>
+          <a href="#" aria-label="Twitter"></a>
+          <a href="#" aria-label="Instagram"></a>
+          <a href="#" aria-label="LinkedIn"></a>
         </div>
       </div>
     </div>
+  </footer>
 
-    <div class="hero-right">
-      <div class="floating-card card-one">
-        <h4>Instant Loans</h4>
-        <p>Quick approval & disbursal</p>
-      </div>
-      <div class="floating-card card-two">
-        <h4>Investment Plans</h4>
-        <p>Grow your wealth</p>
-      </div>
-      <div class="floating-card card-three">
-        <h4>Insurance</h4>
-        <p>Secure your future</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-    <!-- Features Section -->
-    <section id="features" class="features">
-        <div class="container">
-            <h2 class="section-title">Why Choose Dhani Finance?</h2>
-            <p class="section-subtitle">We offer comprehensive financial solutions tailored to your unique needs and goals.</p>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-bolt"></i>
-                    </div>
-                    <h3>Instant Approval</h3>
-                    <p>Get quick loan approvals with minimal documentation and fast disbursal to meet your urgent financial needs.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <h3>Secure & Safe</h3>
-                    <p>Your financial security is our top priority. We implement industry-leading security measures to protect your data.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-hand-holding-usd"></i>
-                    </div>
-                    <h3>Flexible Repayment</h3>
-                    <p>Choose from multiple repayment options that suit your financial situation with no hidden charges.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Services Section -->
-    <section id="services" class="services">
-        <div class="container">
-            <h2 class="section-title">Our Services</h2>
-            <p class="section-subtitle">We offer a wide range of financial services to help you achieve your goals.</p>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-image">
-                        <i class="fas fa-money-bill-wave"></i>
-                    </div>
-                    <div class="service-content">
-                        <h3>Personal Loans</h3>
-                        <p>Get personal loans up to ₹5 lakhs with flexible tenure and competitive interest rates for all your needs.</p>
-                        <a href="#" class="btn btn-primary">Apply Now</a>
-                    </div>
-                </div>
-                <div class="service-card">
-                    <div class="service-image">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <div class="service-content">
-                        <h3>Investment Plans</h3>
-                        <p>Grow your wealth with our curated investment plans offering high returns with minimal risk.</p>
-                        <a href="#" class="btn btn-primary">Invest Now</a>
-                    </div>
-                </div>
-                <div class="service-card">
-                    <div class="service-image">
-                        <i class="fas fa-user-shield"></i>
-                    </div>
-                    <div class="service-content">
-                        <h3>Insurance</h3>
-                        <p>Protect your future with comprehensive life, health, and vehicle insurance plans at affordable premiums.</p>
-                        <a href="#" class="btn btn-primary">Get Insured</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials Section -->
-    <section id="testimonials" class="testimonials">
-        <div class="container">
-            <h2 class="section-title">What Our Customers Say</h2>
-            <p class="section-subtitle">Don't just take our word for it - hear from our satisfied customers.</p>
-            <div class="testimonials-slider">
-                <div class="testimonials-wrapper" id="testimonialsWrapper">
-                    <div class="testimonial-card">
-                        <div class="testimonial-avatar">RK</div>
-                        <p class="testimonial-text">"Dhani Finance helped me during a financial emergency. The loan process was quick and hassle-free. Highly recommended for anyone in need of urgent funds!"</p>
-                        <div class="testimonial-author">Rajesh Kumar</div>
-                        <div class="testimonial-role">Small Business Owner</div>
-                    </div>
-                </div>
-                <div class="slider-controls">
-                    <div class="slider-dot active" data-slide="0"></div>
-                    <div class="slider-dot" data-slide="1"></div>
-                    <div class="slider-dot" data-slide="2"></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="cta">
-        <div class="container">
-            <div class="cta-content">
-                <h2>Ready to Transform Your Financial Future?</h2>
-                <p>Join millions of satisfied customers who trust Dhani Finance with their financial needs.</p>
-                <a href="#contact" class="btn btn-light">Get Started Today</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2 class="section-title">Get In Touch</h2>
-            <p class="section-subtitle">Have questions? We're here to help. Send us a message and we'll respond as soon as possible.</p>
-            <div class="contact-wrapper">
-                <div class="contact-info">
-                    <div class="contact-card">
-                        <div class="contact-icon">
-                            <i class="fas fa-map-marker-alt"></i>
-                        </div>
-                        <div class="contact-details">
-                            <h3>Our Location</h3>
-                            <p>One Indiabulls Centre, Tower 1, 15th Floor, Jupiter Mills Compound, Mumbai, Maharashtra 400013</p>
-                        </div>
-                    </div>
-                    <div class="contact-card">
-                        <div class="contact-icon">
-                            <i class="fas fa-phone-alt"></i>
-                        </div>
-                        <div class="contact-details">
-                            <h3>Phone Number</h3>
-                            <p>+91-22-XXXX-XXXX</p>
-                        </div>
-                    </div>
-                    <div class="contact-card">
-                        <div class="contact-icon">
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                        <div class="contact-details">
-                            <h3>Email Address</h3>
-                            <p>info@dhanifinance.com</p>
-                        </div>
-                    </div>
-                    <div class="contact-card">
-                        <div class="contact-icon">
-                            <i class="fas fa-clock"></i>
-                        </div>
-                        <div class="contact-details">
-                            <h3>Working Hours</h3>
-                            <p>Monday - Friday: 9:00 AM - 6:00 PM</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="contact-form">
-                    <form id="contactForm">
-                        <div class="form-group">
-                            <label for="name">Full Name</label>
-                            <input type="text" id="name" name="name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email Address</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="phone">Phone Number</label>
-                            <input type="tel" id="phone" name="phone" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="subject">Subject</label>
-                            <input type="text" id="subject" name="subject" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea id="message" name="message" rows="5" required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Send Message</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h4>Dhani Finance</h4>
-                    <p>Your trusted partner in financial growth and security. We provide innovative solutions to help you achieve your financial dreams.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
-                </div>
-                <div class="footer-section">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#features">Features</a></li>
-                        <li><a href="#services">Services</a></li>
-                        <li><a href="#testimonials">Testimonials</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Services</h4>
-                    <ul>
-                        <li><a href="#">Personal Loans</a></li>
-                        <li><a href="#">Business Loans</a></li>
-                        <li><a href="#">Investment Plans</a></li>
-                        <li><a href="#">Insurance</a></li>
-                        <li><a href="#">Credit Cards</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Contact Info</h4>
-                    <p><i class="fas fa-map-marker-alt"></i> One Indiabulls Centre, Mumbai</p>
-                    <p><i class="fas fa-phone-alt"></i> +91-22-XXXX-XXXX</p>
-                    <p><i class="fas fa-envelope"></i> info@dhanifinance.com</p>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2023 Dhani Finance. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
-<script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
