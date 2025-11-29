@@ -1,210 +1,1249 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Dhani — Loans & Services (Clone)</title>
-  <link rel="stylesheet" href="style.css" />
-  <meta name="description" content="Dhani Loans & Services — responsive clone (HTML, CSS, JS)" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dhani — Loans & Services (Clone)</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --accent: #6a3be8;
+            --accent-2: #4e22c9;
+            --accent-light: #8a6cf6;
+            --accent-gold: #ffb300;
+            --muted: #6b7280;
+            --bg: #f8fafc;
+            --card: #ffffff;
+            --container: 1100px;
+            --radius: 14px;
+            --shadow: 0 10px 30px rgba(13, 18, 25, 0.04);
+            --shadow-hover: 0 18px 40px rgba(13, 18, 25, 0.06);
+            font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html, body {
+            height: 100%;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: linear-gradient(180deg, #fbfdff 0%, #f7fbff 100%);
+            color: #0f1724;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            line-height: 1.5;
+            font-size: 16px;
+        }
+
+        .container {
+            width: 90%;
+            max-width: var(--container);
+            margin: 0 auto;
+        }
+
+        /* NAVBAR */
+        .site-header {
+            position: sticky;
+            top: 0;
+            z-index: 80;
+            backdrop-filter: blur(6px);
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.55));
+            border-bottom: 1px solid rgba(18, 27, 38, 0.04);
+            transition: all 0.3s ease;
+        }
+
+        .site-header.scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-container {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 0;
+        }
+
+        .brand img {
+            height: 46px;
+        }
+
+        .main-nav ul {
+            display: flex;
+            gap: 18px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .main-nav a {
+            text-decoration: none;
+            color: #0f1724;
+            font-weight: 600;
+            padding: 8px 6px;
+            transition: color .18s ease;
+            position: relative;
+        }
+
+        .main-nav a:hover {
+            color: var(--accent);
+        }
+
+        .main-nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        .main-nav a:hover::after {
+            width: 100%;
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 9px 14px;
+            border-radius: 10px;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-ghost {
+            background: transparent;
+            border: 1px solid rgba(15, 23, 36, 0.06);
+        }
+
+        .btn-ghost:hover {
+            background: rgba(15, 23, 36, 0.03);
+        }
+
+        .btn-primary {
+            background: linear-gradient(90deg, var(--accent), var(--accent-2));
+            color: white;
+            border: 0;
+            box-shadow: 0 8px 24px rgba(106, 59, 232, 0.14);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 28px rgba(106, 59, 232, 0.2);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid rgba(15, 23, 36, 0.06);
+        }
+
+        .btn-outline:hover {
+            background: rgba(15, 23, 36, 0.03);
+        }
+
+        /* Hamburger (mobile) */
+        #hamburger {
+            display: none;
+            width: 44px;
+            height: 36px;
+            border-radius: 8px;
+            background: transparent;
+            border: 0;
+            cursor: pointer;
+            padding: 6px;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #hamburger span {
+            display: block;
+            height: 3px;
+            background: #0f1724;
+            margin: 3px 0;
+            border-radius: 4px;
+            transition: all .25s;
+            width: 24px;
+        }
+
+        #hamburger.open span:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+
+        #hamburger.open span:nth-child(2) {
+            opacity: 0;
+        }
+
+        #hamburger.open span:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+
+        /* HERO */
+        .hero {
+            position: relative;
+            padding: 56px 0;
+            min-height: 520px;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(106, 59, 232, 0.08), rgba(78, 34, 201, 0.06));
+            pointer-events: none;
+        }
+
+        .hero-inner {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .hero-left {
+            flex: 1;
+            max-width: 620px;
+        }
+
+        .hero-title {
+            font-family: 'Montserrat', 'Inter', sans-serif;
+            font-size: clamp(28px, 5vw, 44px);
+            margin: 0 0 12px;
+            color: #0b1220;
+            line-height: 1.2;
+        }
+
+        .hero-sub {
+            color: var(--muted);
+            margin: 0 0 22px;
+            font-size: 1.05rem;
+        }
+
+        .hero-ctas {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 18px;
+        }
+
+        .hero-features {
+            list-style: none;
+            padding: 0;
+            margin: 8px 0 0;
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .hero-features li {
+            background: rgba(15, 23, 36, 0.03);
+            padding: 10px 12px;
+            border-radius: 999px;
+            font-weight: 600;
+            font-size: .95rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .hero-features li::before {
+            content: "✓";
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        /* hero image */
+        .hero-right {
+            width: 420px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .hero-phone {
+            width: 100%;
+            max-width: 360px;
+            border-radius: 20px;
+            box-shadow: 0 18px 40px rgba(9, 10, 18, 0.12);
+            transform: translateY(0);
+            transition: transform .45s;
+            position: relative;
+            z-index: 2;
+        }
+
+        .floating-shape {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.1;
+            z-index: 1;
+        }
+
+        .shape-1 {
+            width: 120px;
+            height: 120px;
+            background: var(--accent);
+            top: 10%;
+            right: 10%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .shape-2 {
+            width: 80px;
+            height: 80px;
+            background: var(--accent-light);
+            bottom: 20%;
+            left: 5%;
+            animation: float 8s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        /* CARDS */
+        .section {
+            padding: 56px 0;
+        }
+
+        .section-head {
+            max-width: 760px;
+            margin: 0 auto 30px;
+            text-align: center;
+        }
+
+        .section-head h2 {
+            font-size: 32px;
+            margin-bottom: 12px;
+            color: #0b1220;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+            align-items: stretch;
+        }
+
+        .card {
+            background: var(--card);
+            padding: 20px;
+            border-radius: 14px;
+            box-shadow: var(--shadow);
+            transition: transform .22s ease, box-shadow .22s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-light));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .card-icon {
+            font-size: 28px;
+            margin-bottom: 12px;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(106, 59, 232, 0.1);
+            border-radius: 12px;
+        }
+
+        .card h3 {
+            margin: 6px 0 8px;
+        }
+
+        .card p {
+            color: var(--muted);
+            margin: 0 0 12px;
+        }
+
+        .card-cta {
+            font-weight: 700;
+            color: var(--accent);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* BENEFITS */
+        .grid-two {
+            display: grid;
+            grid-template-columns: 1fr 420px;
+            gap: 32px;
+            align-items: center;
+        }
+
+        .benefit-list {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+
+        .benefit-list li {
+            padding: 12px 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .benefit-list li::before {
+            content: "✓";
+            color: var(--accent);
+            font-weight: bold;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(106, 59, 232, 0.1);
+            border-radius: 50%;
+        }
+
+        .app-screenshot {
+            width: 100%;
+            border-radius: 14px;
+            box-shadow: 0 14px 40px rgba(12, 15, 20, 0.06);
+        }
+
+        .download-cta {
+            margin-top: 30px;
+        }
+
+        .store-buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 12px;
+        }
+
+        .store-btn {
+            display: inline-block;
+            height: 50px;
+        }
+
+        .store-btn img {
+            height: 100%;
+            border-radius: 8px;
+        }
+
+        /* TESTIMONIALS */
+        .testimonials {
+            background: linear-gradient(180deg, #f8f9fb, #ffffff);
+        }
+
+        .testimonial-wrap {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            justify-content: center;
+        }
+
+        .t-nav {
+            background: transparent;
+            border: 0;
+            font-size: 28px;
+            padding: 8px 10px;
+            cursor: pointer;
+            color: var(--muted);
+            transition: color 0.3s ease;
+        }
+
+        .t-nav:hover {
+            color: var(--accent);
+        }
+
+        .testimonial-slider {
+            width: 100%;
+            max-width: 820px;
+            overflow: hidden;
+            position: relative;
+            border-radius: 12px;
+            box-shadow: 0 12px 34px rgba(10, 12, 20, 0.05);
+            background: linear-gradient(180deg, #fff, #fbfdff);
+        }
+
+        .testimonial {
+            padding: 28px 36px;
+            min-height: 120px;
+            box-sizing: border-box;
+            display: block;
+            width: 100%;
+        }
+
+        .testimonial p {
+            margin: 0 0 12px;
+            color: #111827;
+            font-size: 1rem;
+            font-style: italic;
+        }
+
+        .testimonial cite {
+            color: var(--muted);
+            font-weight: 700;
+        }
+
+        /* DETAIL SECTIONS */
+        .detail-section {
+            padding: 56px 0;
+        }
+
+        .detail-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .detail-content h2 {
+            font-size: 32px;
+            margin-bottom: 16px;
+            color: #0b1220;
+        }
+
+        .detail-content p {
+            color: var(--muted);
+            margin-bottom: 20px;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+
+        .feature-list li {
+            padding: 8px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .feature-list li::before {
+            content: "✓";
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        .detail-image {
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 14px 40px rgba(12, 15, 20, 0.06);
+        }
+
+        /* FOOTER */
+        .site-footer {
+            padding: 36px 0 56px;
+            background: linear-gradient(180deg, #f8f9fb, #ffffff);
+            border-top: 1px solid rgba(12, 20, 30, 0.02);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+            align-items: start;
+        }
+
+        .footer-col img {
+            height: 30px;
+            margin-bottom: 10px;
+        }
+
+        .footer-col h4 {
+            margin: 0 0 8px;
+        }
+
+        .footer-col ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-col a {
+            color: var(--muted);
+            text-decoration: none;
+            font-size: .95rem;
+            transition: color 0.2s ease;
+        }
+
+        .footer-col a:hover {
+            color: var(--accent);
+        }
+
+        .socials {
+            display: flex;
+            gap: 12px;
+        }
+
+        .socials a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background: rgba(15, 23, 36, 0.05);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .socials a:hover {
+            background: var(--accent);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Call Box */
+        .call-box {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-right: 15px;
+            font-weight: 600;
+            color: #0a53ff;
+            text-decoration: none;
+            font-size: 15px;
+            transition: color 0.3s ease;
+        }
+
+        .call-icon {
+            font-size: 18px;
+        }
+
+        .call-box:hover {
+            color: #0039cc;
+        }
+
+        /* Unique Image Styles */
+        .unique-image {
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+            object-fit: cover;
+            background: linear-gradient(135deg, #f5f7ff, #e3e9ff);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+            font-weight: bold;
+            font-size: 18px;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .image-placeholder {
+            background: linear-gradient(135deg, #f0f4ff, #e0e7ff);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+            font-weight: bold;
+            height: 100%;
+            min-height: 300px;
+        }
+
+        /* Responsive rules */
+        @media (max-width: 1000px) {
+            .cards-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .grid-two {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-right {
+                display: none;
+            }
+
+            .detail-container {
+                grid-template-columns: 1fr;
+            }
+
+            .detail-image {
+                order: -1;
+            }
+        }
+
+        @media (max-width: 760px) {
+            #hamburger {
+                display: flex;
+            }
+
+            .main-nav {
+                position: fixed;
+                top: 64px;
+                right: 0;
+                background: rgba(255, 255, 255, 0.98);
+                width: 260px;
+                height: 100vh;
+                transform: translateX(110%);
+                transition: transform .28s;
+                border-left: 1px solid rgba(12, 20, 30, 0.03);
+                padding-top: 20px;
+                z-index: 100;
+            }
+
+            .main-nav.open {
+                transform: translateX(0);
+            }
+
+            .main-nav ul {
+                flex-direction: column;
+                padding: 0 16px;
+                gap: 8px;
+            }
+
+            .nav-actions .btn-ghost {
+                display: none;
+            }
+
+            .hero {
+                min-height: 520px;
+                padding: 40px 0;
+            }
+
+            .site-header {
+                padding: 6px 0;
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .call-box {
+                display: none;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .hero-title {
+                font-size: 28px;
+            }
+
+            .nav-container {
+                gap: 8px;
+            }
+
+            .brand img {
+                height: 30px;
+            }
+
+            .hero-ctas {
+                flex-direction: column;
+            }
+
+            .store-buttons {
+                flex-direction: column;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Active section highlighting */
+        .section-highlight {
+            scroll-margin-top: 80px;
+        }
+    </style>
 </head>
 <body>
 
-  <!-- ====== NAVBAR ====== -->
-  <header class="site-header">
-    <div class="container nav-container">
-      <a class="brand" href="#">
-        <img id="site-logo" src="image/Dhani logo.jpg" alt="Dhani logo" onerror="this.onerror=null; this.src='assets/logo-placeholder.png'">
-      </a>
+    <!-- ====== NAVBAR ====== -->
+    <header class="site-header" id="header">
+        <div class="container nav-container">
+            <a class="brand" href="#">
+                <img id="site-logo" src="https://www.dhani.com/assets/images/logo.svg" alt="Dhani logo">
+            </a>
 
-      <nav class="main-nav" id="main-nav">
-        <ul>
-          <li><a href="#loans">Loans</a></li>
-          <li><a href="#card">Dhani Card</a></li>
-          <li><a href="#health">Health</a></li>
-          <li><a href="#offers">Offers</a></li>
-          <li><a href="#support">Support</a></li>
-        </ul>
-      </nav>
+            <nav class="main-nav" id="main-nav">
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#loans">Loans</a></li>
+                    <li><a href="#card">Dhani Card</a></li>
+                    <li><a href="#health">Health</a></li>
+                    <li><a href="#offers">Offers</a></li>
+                    <li><a href="#support">Support</a></li>
+                </ul>
+            </nav>
 
-      <div class="nav-actions">
+            <div class="nav-actions">
+                <!-- Call icon + Phone number -->
+                <a class="call-box" href="tel:9031209738">
+                    <span class="call-icon"><i class="fas fa-phone-alt"></i></span>
+                    <span class="call-number">9031209738</span>
+                </a>
 
-        <!-- ⭐ Added Call icon + Phone number -->
-        <a class="call-box" href="tel:9031209738">
-          <span class="call-icon">📞</span>
-          <span class="call-number">9031209738</span>
-        </a>
+                <a class="btn btn-ghost" href="#download">Download App</a>
 
-        <a class="btn btn-ghost" href="#download">Download App</a>
-
-        <button id="hamburger" aria-label="Toggle menu">
-          <span></span><span></span><span></span>
-        </button>
-      </div>
-    </div>
-  </header>
-
-  <!-- ====== HERO ====== -->
-  <section class="hero" id="home" aria-label="Hero">
-    <div class="hero-overlay"></div>
-    <div class="container hero-inner">
-      <div class="hero-left">
-        <h1 class="hero-title">Dhani — Loans & Services</h1>
-        <p class="hero-sub">Instant loans, personal finance, and health services — all in one app. Easy EMI, zero hassle.</p>
-
-        <div class="hero-ctas">
-          <a class="btn btn-primary" href="#apply">Apply Now</a>
-          <a class="btn btn-outline" href="#learn">Learn More</a>
+                <button id="hamburger" aria-label="Toggle menu">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
         </div>
+    </header>
 
-        <ul class="hero-features">
-          <li><strong>Quick Approval</strong> — Minimal docs</li>
-          <li><strong>Flexible EMI</strong> — Pay your way</li>
-          <li><strong>Secure</strong> — Bank-grade security</li>
-        </ul>
-      </div>
+    <!-- ====== HERO ====== -->
+    <section class="hero" id="home" aria-label="Hero">
+        <div class="hero-overlay"></div>
+        <div class="container hero-inner">
+            <div class="hero-left">
+                <h1 class="hero-title">Dhani — Loans & Services</h1>
+                <p class="hero-sub">Instant loans, personal finance, and health services — all in one app. Easy EMI, zero hassle.</p>
 
-      <div class="hero-right">
-        <img class="hero-phone" src="image/Dhani_Home_Page_Banner.svg" alt="Dhani App preview" onerror="this.onerror=null; this.src='assets/hero-placeholder.jpg'">
-      </div>
-    </div>
-  </section>
+                <div class="hero-ctas">
+                    <a class="btn btn-primary" href="#apply">Apply Now</a>
+                    <a class="btn btn-outline" href="#learn">Learn More</a>
+                </div>
 
-  <!-- ====== OFFERS / LOAN CARDS ====== -->
-  <section class="section offers" id="loans">
-    <div class="container">
-      <div class="section-head">
-        <h2>Popular Services</h2>
-        <p>Choose what fits you — instant personal loan, credit line, health services & more.</p>
-      </div>
+                <ul class="hero-features">
+                    <li>Quick Approval — Minimal docs</li>
+                    <li>Flexible EMI — Pay your way</li>
+                    <li>Secure — Bank-grade security</li>
+                </ul>
+            </div>
 
-      <div class="cards-grid">
-        <article class="card">
-          <div class="card-icon">💸</div>
-          <h3>Personal Loan</h3>
-          <p>Loan up to ₹5,00,000. Flexible EMIs & quick disbursal.</p>
-          <a class="card-cta" href="#apply">Apply in minutes →</a>
-        </article>
-
-        <article class="card">
-          <div class="card-icon">💳</div>
-          <h3>Dhani Card</h3>
-          <p>Get a credit line + exclusive offers on payments and shopping.</p>
-          <a class="card-cta" href="#card">Get Card →</a>
-        </article>
-
-        <article class="card">
-          <div class="card-icon">🩺</div>
-          <h3>Dhani Health</h3>
-          <p>Consult doctors, book tests & manage health expenses easily.</p>
-          <a class="card-cta" href="#health">Explore Health →</a>
-        </article>
-
-        <article class="card">
-          <div class="card-icon">🎁</div>
-          <h3>Offers & Cashback</h3>
-          <p>Exclusive discounts & partner deals — save while you spend.</p>
-          <a class="card-cta" href="#offers">View Offers →</a>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- ====== KEY BENEFITS ====== -->
-  <section class="section benefits">
-    <div class="container grid-two">
-      <div class="benefits-left">
-        <h2>Why choose Dhani?</h2>
-        <ul class="benefit-list">
-          <li><strong>Instant approvals</strong> — Minimal paperwork</li>
-          <li><strong>Transparent fees</strong> — No hidden charges</li>
-          <li><strong>24/7 support</strong> — We're here when you need</li>
-        </ul>
-
-        <div class="download-cta" id="download">
-          <p>Download the Dhani app</p>
-          <div class="store-buttons">
-            <a class="store-btn" href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Google Play"></a>
-            <a class="store-btn" href="#"><img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="App Store"></a>
-          </div>
+            <div class="hero-right">
+                <div class="floating-shape shape-1"></div>
+                <div class="floating-shape shape-2"></div>
+                <div class="image-placeholder">
+                    <div>
+                        <i class="fas fa-mobile-alt" style="font-size: 48px; margin-bottom: 15px;"></i>
+                        <p>Dhani App Interface</p>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
+    </section>
 
-      <div class="benefits-right">
-        <img class="app-screenshot" src="image/App screenshot.webp" alt="App screenshot">
-      </div>
-    </div>
-  </section>
+    <!-- ====== OFFERS / LOAN CARDS ====== -->
+    <section class="section offers" id="loans">
+        <div class="container">
+            <div class="section-head">
+                <h2>Popular Services</h2>
+                <p>Choose what fits you — instant personal loan, credit line, health services & more.</p>
+            </div>
 
-  <!-- ====== TESTIMONIALS ====== -->
-  <section class="section testimonials">
-    <div class="container">
-      <div class="section-head">
-        <h2>What customers say</h2>
-      </div>
+            <div class="cards-grid">
+                <article class="card">
+                    <div class="card-icon"><i class="fas fa-money-bill-wave"></i></div>
+                    <h3>Personal Loan</h3>
+                    <p>Loan up to ₹5,00,000. Flexible EMIs & quick disbursal.</p>
+                    <a class="card-cta" href="#apply">Apply in minutes <i class="fas fa-arrow-right"></i></a>
+                </article>
 
-      <div class="testimonial-wrap" id="testimonial-wrap">
-        <button class="t-nav t-prev" id="t-prev">‹</button>
-        <div class="testimonial-slider" id="testimonial-slider">
-          <blockquote class="testimonial">
-            <p>"Got an instant loan with minimum fuss. App is smooth and customer support helped every step."</p>
-            <cite>— Rahul K.</cite>
-          </blockquote>
+                <article class="card">
+                    <div class="card-icon"><i class="fas fa-credit-card"></i></div>
+                    <h3>Dhani Card</h3>
+                    <p>Get a credit line + exclusive offers on payments and shopping.</p>
+                    <a class="card-cta" href="#card">Get Card <i class="fas fa-arrow-right"></i></a>
+                </article>
 
-          <blockquote class="testimonial">
-            <p>"Saved a lot using cashback offers on the Dhani Card. Payments are seamless."</p>
-            <cite>— Priya M.</cite>
-          </blockquote>
+                <article class="card">
+                    <div class="card-icon"><i class="fas fa-heartbeat"></i></div>
+                    <h3>Dhani Health</h3>
+                    <p>Consult doctors, book tests & manage health expenses easily.</p>
+                    <a class="card-cta" href="#health">Explore Health <i class="fas fa-arrow-right"></i></a>
+                </article>
 
-          <blockquote class="testimonial">
-            <p>"Dhani Health connected me to a specialist quickly — very helpful during an emergency."</p>
-            <cite>— Sunil R.</cite>
-          </blockquote>
+                <article class="card">
+                    <div class="card-icon"><i class="fas fa-gift"></i></div>
+                    <h3>Offers & Cashback</h3>
+                    <p>Exclusive discounts & partner deals — save while you spend.</p>
+                    <a class="card-cta" href="#offers">View Offers <i class="fas fa-arrow-right"></i></a>
+                </article>
+            </div>
         </div>
-        <button class="t-nav t-next" id="t-next">›</button>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ====== FOOTER ====== -->
-  <footer class="site-footer">
-    <div class="container footer-grid">
-      <div class="footer-col">
-        <img id="footer-logo" src="https://www.dhani.com/assets/images/logo.svg" alt="Dhani">
-        <p>© <span id="year"></span> Dhani — Clone for demo. This is not the official site.</p>
-      </div>
-
-      <div class="footer-col">
-        <h4>Products</h4>
-        <ul>
-          <li><a href="#loans">Personal Loan</a></li>
-          <li><a href="#card">Dhani Card</a></li>
-          <li><a href="#health">Dhani Health</a></li>
-        </ul>
-      </div>
-
-      <div class="footer-col">
-        <h4>Support</h4>
-        <ul>
-          <li><a href="#support">Help Center</a></li>
-          <li><a href="#support">Contact Us</a></li>
-          <li><a href="#support">Privacy</a></li>
-        </ul>
-      </div>
-
-      <div class="footer-col">
-        <h4>Follow</h4>
-        <div class="socials">
-          <a href="#"></a>
-          <a href="#"></a>
-          <a href="#"></a>
-          <a href="#"></a>
+    <!-- ====== DHANI CARD DETAILS ====== -->
+    <section class="detail-section section-highlight" id="card">
+        <div class="container detail-container">
+            <div class="detail-content">
+                <h2>Dhani Card - Your Financial Companion</h2>
+                <p>Experience the freedom of a flexible credit line with exclusive rewards and cashback on every transaction.</p>
+                
+                <ul class="feature-list">
+                    <li>Credit limit up to ₹2,00,000</li>
+                    <li>Zero joining fees and annual charges</li>
+                    <li>Cashback on shopping, bill payments, and more</li>
+                    <li>Easy EMI conversion for large purchases</li>
+                    <li>Contactless payments with NFC technology</li>
+                </ul>
+                
+                <a class="btn btn-primary" href="#apply-card">Apply for Dhani Card</a>
+            </div>
+            
+            <div class="detail-image">
+                <div class="image-placeholder">
+                    <div>
+                        <i class="fas fa-credit-card" style="font-size: 48px; margin-bottom: 15px;"></i>
+                        <p>Dhani Card Design</p>
+                        <p style="font-size: 14px; margin-top: 10px;">Premium look with contactless technology</p>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  </footer>
+    </section>
 
-  <script src="script.js"></script>
+    <!-- ====== DHANI HEALTH DETAILS ====== -->
+    <section class="detail-section section-highlight" id="health">
+        <div class="container detail-container">
+            <div class="detail-image">
+                <div class="image-placeholder">
+                    <div>
+                        <i class="fas fa-stethoscope" style="font-size: 48px; margin-bottom: 15px;"></i>
+                        <p>Dhani Health Services</p>
+                        <p style="font-size: 14px; margin-top: 10px;">Online consultations & medicine delivery</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="detail-content">
+                <h2>Dhani Health - Complete Healthcare Solution</h2>
+                <p>Access quality healthcare services from the comfort of your home with Dhani Health.</p>
+                
+                <ul class="feature-list">
+                    <li>Consult with top doctors via video call</li>
+                    <li>Book lab tests with home sample collection</li>
+                    <li>Order medicines with quick home delivery</li>
+                    <li>Health insurance plans for complete coverage</li>
+                    <li>Health records management in one place</li>
+                </ul>
+                
+                <a class="btn btn-primary" href="#explore-health">Explore Health Services</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== OFFERS DETAILS ====== -->
+    <section class="detail-section section-highlight" id="offers">
+        <div class="container detail-container">
+            <div class="detail-content">
+                <h2>Exclusive Offers & Cashback</h2>
+                <p>Save more with Dhani's exclusive offers, cashback, and partner deals across various categories.</p>
+                
+                <ul class="feature-list">
+                    <li>Up to 20% cashback on shopping</li>
+                    <li>Special discounts on bill payments</li>
+                    <li>Partner offers from top brands</li>
+                    <li>Seasonal promotions and festive deals</li>
+                    <li>Reward points on every transaction</li>
+                </ul>
+                
+                <a class="btn btn-primary" href="#view-offers">View All Offers</a>
+            </div>
+            
+            <div class="detail-image">
+                <div class="image-placeholder">
+                    <div>
+                        <i class="fas fa-tags" style="font-size: 48px; margin-bottom: 15px;"></i>
+                        <p>Special Offers & Deals</p>
+                        <p style="font-size: 14px; margin-top: 10px;">Exclusive discounts for Dhani users</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== KEY BENEFITS ====== -->
+    <section class="section benefits">
+        <div class="container grid-two">
+            <div class="benefits-left">
+                <h2>Why choose Dhani?</h2>
+                <ul class="benefit-list">
+                    <li><strong>Instant approvals</strong> — Minimal paperwork</li>
+                    <li><strong>Transparent fees</strong> — No hidden charges</li>
+                    <li><strong>24/7 support</strong> — We're here when you need</li>
+                    <li><strong>Flexible repayment</strong> — Choose your EMI plan</li>
+                    <li><strong>Secure platform</strong> — Bank-level encryption</li>
+                </ul>
+
+                <div class="download-cta" id="download">
+                    <p>Download the Dhani app</p>
+                    <div class="store-buttons">
+                        <a class="store-btn" href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Google Play"></a>
+                        <a class="store-btn" href="#"><img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="App Store"></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="benefits-right">
+                <div class="image-placeholder">
+                    <div>
+                        <i class="fas fa-mobile-alt" style="font-size: 48px; margin-bottom: 15px;"></i>
+                        <p>Dhani Mobile App</p>
+                        <p style="font-size: 14px; margin-top: 10px;">All services in one place</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== SUPPORT SECTION ====== -->
+    <section class="detail-section section-highlight" id="support">
+        <div class="container detail-container">
+            <div class="detail-content">
+                <h2>24/7 Customer Support</h2>
+                <p>Our dedicated support team is always ready to help you with any queries or issues.</p>
+                
+                <ul class="feature-list">
+                    <li>24/7 phone and chat support</li>
+                    <li>Email support with quick response</li>
+                    <li>FAQ section for common questions</li>
+                    <li>In-app help and tutorials</li>
+                    <li>Branch visits for personalized assistance</li>
+                </ul>
+                
+                <div style="margin-top: 20px;">
+                    <a class="btn btn-primary" href="tel:9031209738"><i class="fas fa-phone-alt"></i> Call Now</a>
+                    <a class="btn btn-outline" href="#contact-form" style="margin-left: 10px;">Contact Form</a>
+                </div>
+            </div>
+            
+            <div class="detail-image">
+                <div class="image-placeholder">
+                    <div>
+                        <i class="fas fa-headset" style="font-size: 48px; margin-bottom: 15px;"></i>
+                        <p>Customer Support</p>
+                        <p style="font-size: 14px; margin-top: 10px;">Always here to help you</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== TESTIMONIALS ====== -->
+    <section class="section testimonials">
+        <div class="container">
+            <div class="section-head">
+                <h2>What customers say</h2>
+            </div>
+
+            <div class="testimonial-wrap" id="testimonial-wrap">
+                <button class="t-nav t-prev" id="t-prev"><i class="fas fa-chevron-left"></i></button>
+                <div class="testimonial-slider" id="testimonial-slider">
+                    <blockquote class="testimonial">
+                        <p>"Got an instant loan with minimum fuss. App is smooth and customer support helped every step."</p>
+                        <cite>— Rahul K.</cite>
+                    </blockquote>
+
+                    <blockquote class="testimonial">
+                        <p>"Saved a lot using cashback offers on the Dhani Card. Payments are seamless."</p>
+                        <cite>— Priya M.</cite>
+                    </blockquote>
+
+                    <blockquote class="testimonial">
+                        <p>"Dhani Health connected me to a specialist quickly — very helpful during an emergency."</p>
+                        <cite>— Sunil R.</cite>
+                    </blockquote>
+                </div>
+                <button class="t-nav t-next" id="t-next"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== FOOTER ====== -->
+    <footer class="site-footer">
+        <div class="container footer-grid">
+            <div class="footer-col">
+                <img id="footer-logo" src="https://www.dhani.com/assets/images/logo.svg" alt="Dhani">
+                <p>© <span id="year"></span> Dhani — Clone for demo. This is not the official site.</p>
+            </div>
+
+            <div class="footer-col">
+                <h4>Products</h4>
+                <ul>
+                    <li><a href="#loans">Personal Loan</a></li>
+                    <li><a href="#card">Dhani Card</a></li>
+                    <li><a href="#health">Dhani Health</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="#support">Help Center</a></li>
+                    <li><a href="#support">Contact Us</a></li>
+                    <li><a href="#support">Privacy</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Follow</h4>
+                <div class="socials">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Mobile nav toggle
+            const hamburger = document.getElementById('hamburger');
+            const nav = document.getElementById('main-nav');
+
+            hamburger.addEventListener('click', () => {
+                nav.classList.toggle('open');
+                hamburger.classList.toggle('open');
+            });
+
+            // Close nav when a link is clicked (mobile)
+            nav.querySelectorAll('a').forEach(a => {
+                a.addEventListener('click', () => {
+                    if (nav.classList.contains('open')) {
+                        nav.classList.remove('open');
+                        hamburger.classList.remove('open');
+                    }
+                });
+            });
+
+            // Set current year in footer
+            const yearSpan = document.getElementById('year');
+            if (yearSpan) yearSpan.textContent = new Date().getFullYear();
+
+            // Header scroll effect
+            const header = document.getElementById('header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+
+            // Simple testimonial slider
+            const slider = document.getElementById('testimonial-slider');
+            const testimonials = Array.from(slider.querySelectorAll('.testimonial'));
+            const prevBtn = document.getElementById('t-prev');
+            const nextBtn = document.getElementById('t-next');
+
+            let idx = 0;
+
+            // Wrap testimonials inside a moving container
+            const inner = document.createElement('div');
+            inner.style.display = 'flex';
+            inner.style.transition = 'transform 400ms ease';
+            inner.style.width = (testimonials.length * 100) + '%';
+            inner.style.flex = '0 0 auto';
+            testimonials.forEach(item => {
+                item.style.minWidth = (100 / testimonials.length) + '%';
+                inner.appendChild(item);
+            });
+            // Clear and append
+            slider.innerHTML = '';
+            slider.appendChild(inner);
+
+            function showIndex(i) {
+                idx = (i + testimonials.length) % testimonials.length;
+                inner.style.transform = `translateX(${-(idx * (100 / testimonials.length))}%)`;
+            }
+
+            prevBtn.addEventListener('click', () => showIndex(idx - 1));
+            nextBtn.addEventListener('click', () => showIndex(idx + 1));
+
+            // Auto-play
+            let autoT = setInterval(() => showIndex(idx + 1), 5000);
+            // pause on hover
+            slider.addEventListener('mouseenter', () => clearInterval(autoT));
+            slider.addEventListener('mouseleave', () => autoT = setInterval(() => showIndex(idx + 1), 5000));
+
+            // Small hero image float animation on mouse move
+            const heroPhone = document.querySelector('.hero-phone');
+            const heroSection = document.querySelector('.hero');
+            if (heroPhone && heroSection) {
+                heroSection.addEventListener('mousemove', (e) => {
+                    const rect = heroSection.getBoundingClientRect();
+                    const px = (e.clientX - rect.left) / rect.width - 0.5; // -0.5 .. 0.5
+                    const py = (e.clientY - rect.top) / rect.height - 0.5;
+                    heroPhone.style.transform = `translate(${px * 8}px, ${py * 6}px) rotate(${px * 2}deg)`;
+                });
+                heroSection.addEventListener('mouseleave', () => {
+                    heroPhone.style.transform = 'translateY(0) rotate(0)';
+                });
+            }
+
+            // Slight accessibility improvement: close nav on ESC
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && nav.classList.contains('open')) {
+                    nav.classList.remove('open');
+                    hamburger.classList.remove('open');
+                }
+            });
+
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
