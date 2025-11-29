@@ -659,23 +659,7 @@
             color: #0039cc;
         }
 
-        /* Unique Image Styles */
-        .unique-image {
-            width: 100%;
-            height: 100%;
-            border-radius: 12px;
-            object-fit: cover;
-            background: linear-gradient(135deg, #f5f7ff, #e3e9ff);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--accent);
-            font-weight: bold;
-            font-size: 18px;
-            text-align: center;
-            padding: 20px;
-        }
-
+        /* Image Styles */
         .image-placeholder {
             background: linear-gradient(135deg, #f0f4ff, #e0e7ff);
             border-radius: 12px;
@@ -686,6 +670,60 @@
             font-weight: bold;
             height: 100%;
             min-height: 300px;
+        }
+
+        .professional-image {
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+            object-fit: cover;
+            box-shadow: 0 14px 40px rgba(12, 15, 20, 0.06);
+        }
+
+        /* Team Section */
+        .team-section {
+            padding: 56px 0;
+            background: linear-gradient(180deg, #f8f9fb, #ffffff);
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            margin-top: 30px;
+        }
+
+        .team-member {
+            text-align: center;
+            background: var(--card);
+            padding: 20px;
+            border-radius: 14px;
+            box-shadow: var(--shadow);
+            transition: transform .22s ease, box-shadow .22s ease;
+        }
+
+        .team-member:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .team-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 15px;
+            border: 4px solid rgba(106, 59, 232, 0.1);
+        }
+
+        .team-member h4 {
+            margin: 10px 0 5px;
+            color: #0b1220;
+        }
+
+        .team-member p {
+            color: var(--muted);
+            font-size: 0.9rem;
         }
 
         /* Responsive rules */
@@ -708,6 +746,10 @@
 
             .detail-image {
                 order: -1;
+            }
+
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
 
@@ -763,6 +805,10 @@
 
             .call-box {
                 display: none;
+            }
+
+            .team-grid {
+                grid-template-columns: 1fr;
             }
         }
 
@@ -857,12 +903,7 @@
             <div class="hero-right">
                 <div class="floating-shape shape-1"></div>
                 <div class="floating-shape shape-2"></div>
-                <div class="image-placeholder">
-                    <div>
-                        <i class="fas fa-mobile-alt" style="font-size: 48px; margin-bottom: 15px;"></i>
-                        <p>Dhani App Interface</p>
-                    </div>
-                </div>
+                <img class="professional-image" src="image/Dhani — Loans & Services.png" alt="Dhani App Interface">
             </div>
         </div>
     </section>
@@ -926,13 +967,7 @@
             </div>
             
             <div class="detail-image">
-                <div class="image-placeholder">
-                    <div>
-                        <i class="fas fa-credit-card" style="font-size: 48px; margin-bottom: 15px;"></i>
-                        <p>Dhani Card Design</p>
-                        <p style="font-size: 14px; margin-top: 10px;">Premium look with contactless technology</p>
-                    </div>
-                </div>
+                <img class="professional-image" src="image/Dhani Card - Your Financial Companion.jpeg" alt="Dhani Card">
             </div>
         </div>
     </section>
@@ -941,13 +976,7 @@
     <section class="detail-section section-highlight" id="health">
         <div class="container detail-container">
             <div class="detail-image">
-                <div class="image-placeholder">
-                    <div>
-                        <i class="fas fa-stethoscope" style="font-size: 48px; margin-bottom: 15px;"></i>
-                        <p>Dhani Health Services</p>
-                        <p style="font-size: 14px; margin-top: 10px;">Online consultations & medicine delivery</p>
-                    </div>
-                </div>
+                <img class="professional-image" src="image/x2-men-phone.png.pagespeed.ic.7dgrPs_TLa.webp" alt="Dhani Health Services">
             </div>
             
             <div class="detail-content">
@@ -963,6 +992,42 @@
                 </ul>
                 
                 <a class="btn btn-primary" href="#explore-health">Explore Health Services</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== TEAM SECTION ====== -->
+    <section class="team-section">
+        <div class="container">
+            <div class="section-head">
+                <h2>Meet Our Professional Team</h2>
+                <p>Our dedicated team of financial experts and customer service professionals are here to help you achieve your financial goals.</p>
+            </div>
+
+            <div class="team-grid">
+                <div class="team-member">
+                    <img class="team-image" src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80" alt="Financial Advisor">
+                    <h4>Priya Sharma</h4>
+                    <p>Senior Financial Advisor</p>
+                </div>
+
+                <div class="team-member">
+                    <img class="team-image" src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80" alt="Loan Specialist">
+                    <h4>Anjali Patel</h4>
+                    <p>Loan Processing Specialist</p>
+                </div>
+
+                <div class="team-member">
+                    <img class="team-image" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80" alt="Customer Support">
+                    <h4>Neha Gupta</h4>
+                    <p>Customer Support Manager</p>
+                </div>
+
+                <div class="team-member">
+                    <img class="team-image" src="https://images.unsplash.com/photo-1551836026-d5c88ac5c4a0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80" alt="Health Consultant">
+                    <h4>Riya Mehta</h4>
+                    <p>Health Services Consultant</p>
+                </div>
             </div>
         </div>
     </section>
@@ -986,13 +1051,7 @@
             </div>
             
             <div class="detail-image">
-                <div class="image-placeholder">
-                    <div>
-                        <i class="fas fa-tags" style="font-size: 48px; margin-bottom: 15px;"></i>
-                        <p>Special Offers & Deals</p>
-                        <p style="font-size: 14px; margin-top: 10px;">Exclusive discounts for Dhani users</p>
-                    </div>
-                </div>
+                <img class="professional-image" src="image/Exclusive Offers & Cashback.jpeg" alt="Special Offers">
             </div>
         </div>
     </section>
@@ -1020,13 +1079,7 @@
             </div>
 
             <div class="benefits-right">
-                <div class="image-placeholder">
-                    <div>
-                        <i class="fas fa-mobile-alt" style="font-size: 48px; margin-bottom: 15px;"></i>
-                        <p>Dhani Mobile App</p>
-                        <p style="font-size: 14px; margin-top: 10px;">All services in one place</p>
-                    </div>
-                </div>
+                <img class="professional-image" src="image/Why choose Dhani.jpeg" alt="Dhani Mobile App">
             </div>
         </div>
     </section>
@@ -1053,13 +1106,7 @@
             </div>
             
             <div class="detail-image">
-                <div class="image-placeholder">
-                    <div>
-                        <i class="fas fa-headset" style="font-size: 48px; margin-bottom: 15px;"></i>
-                        <p>Customer Support</p>
-                        <p style="font-size: 14px; margin-top: 10px;">Always here to help you</p>
-                    </div>
-                </div>
+                <img class="professional-image" src="image/CustomerSupport.jpeg" alt="Customer Support">
             </div>
         </div>
     </section>
@@ -1202,29 +1249,6 @@
             // pause on hover
             slider.addEventListener('mouseenter', () => clearInterval(autoT));
             slider.addEventListener('mouseleave', () => autoT = setInterval(() => showIndex(idx + 1), 5000));
-
-            // Small hero image float animation on mouse move
-            const heroPhone = document.querySelector('.hero-phone');
-            const heroSection = document.querySelector('.hero');
-            if (heroPhone && heroSection) {
-                heroSection.addEventListener('mousemove', (e) => {
-                    const rect = heroSection.getBoundingClientRect();
-                    const px = (e.clientX - rect.left) / rect.width - 0.5; // -0.5 .. 0.5
-                    const py = (e.clientY - rect.top) / rect.height - 0.5;
-                    heroPhone.style.transform = `translate(${px * 8}px, ${py * 6}px) rotate(${px * 2}deg)`;
-                });
-                heroSection.addEventListener('mouseleave', () => {
-                    heroPhone.style.transform = 'translateY(0) rotate(0)';
-                });
-            }
-
-            // Slight accessibility improvement: close nav on ESC
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape' && nav.classList.contains('open')) {
-                    nav.classList.remove('open');
-                    hamburger.classList.remove('open');
-                }
-            });
 
             // Smooth scrolling for anchor links
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
