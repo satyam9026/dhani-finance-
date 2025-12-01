@@ -48,6 +48,66 @@
             margin: 0 auto;
         }
 
+        /* WhatsApp Floating Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            z-index: 100;
+        }
+
+        .whatsapp-float a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            background: #25D366;
+            border-radius: 50%;
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.3);
+            transition: all 0.3s ease;
+            position: relative;
+            text-decoration: none;
+            color: white;
+            font-size: 32px;
+        }
+
+        .whatsapp-float a:hover {
+            background: #128C7E;
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+        }
+
+        .whatsapp-tooltip {
+            position: absolute;
+            right: 70px;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 14px;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            font-weight: 600;
+        }
+
+        .whatsapp-tooltip::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: -6px;
+            transform: translateY(-50%);
+            border-width: 6px 0 6px 6px;
+            border-style: solid;
+            border-color: transparent transparent transparent rgba(0, 0, 0, 0.8);
+        }
+
+        .whatsapp-float a:hover .whatsapp-tooltip {
+            opacity: 1;
+        }
+
         /* NAVBAR */
         .site-header {
             position: sticky;
@@ -810,6 +870,22 @@
             .team-grid {
                 grid-template-columns: 1fr;
             }
+
+            /* WhatsApp button mobile */
+            .whatsapp-float {
+                bottom: 20px;
+                left: 20px;
+            }
+            
+            .whatsapp-float a {
+                width: 56px;
+                height: 56px;
+                font-size: 28px;
+            }
+            
+            .whatsapp-tooltip {
+                display: none;
+            }
         }
 
         @media (max-width: 420px) {
@@ -835,6 +911,18 @@
 
             .footer-grid {
                 grid-template-columns: 1fr;
+            }
+
+            /* WhatsApp button small screens */
+            .whatsapp-float {
+                bottom: 15px;
+                left: 15px;
+            }
+            
+            .whatsapp-float a {
+                width: 50px;
+                height: 50px;
+                font-size: 24px;
             }
         }
 
@@ -1178,6 +1266,14 @@
             </div>
         </div>
     </footer>
+
+    <!-- ====== WHATSAPP FLOATING BUTTON ====== -->
+    <div class="whatsapp-float">
+        <a href="https://wa.me/919031209738" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+            <span class="whatsapp-tooltip">Chat with us</span>
+        </a>
+    </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
